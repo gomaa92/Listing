@@ -2,37 +2,59 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/downloadImage"
+        android:id="@+id/downloadVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
         android:padding="8dp"
         android:src="@drawable/ic_download"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jwPlayer" />
+        app:layout_constraintTop_toBottomOf="@id/videoView" />
 
-    <com.nagwa.listing.presentation.view.utils.LifeCycleAwareJWPlayer
-        android:id="@+id/jwPlayer"
+    <VideoView
+        android:id="@+id/videoView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitXY"
-        app:layout_constraintDimensionRatio="H,.7"
+        app:layout_constraintDimensionRatio="H,.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/videoTitle" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/playVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/videoView"
+        app:layout_constraintEnd_toEndOf="@id/videoView"
+        app:layout_constraintStart_toStartOf="@id/videoView"
+        app:layout_constraintTop_toTopOf="@id/videoView" />
+
+    <ProgressBar
+        android:id="@+id/video_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/downloadVideo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/downloadVideo"
+        app:layout_constraintTop_toTopOf="@id/downloadVideo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/videoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/mf_progress_bar"
-        app:layout_constraintBottom_toBottomOf="@id/downloadImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_margin="8dp"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        app:layout_constraintStart_toEndOf="@id/downloadImage"
-        app:layout_constraintTop_toTopOf="@id/downloadImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
