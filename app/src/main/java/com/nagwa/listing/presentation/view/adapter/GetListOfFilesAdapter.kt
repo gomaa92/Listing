@@ -104,9 +104,6 @@ class GetListOfFilesAdapter @Inject constructor() :
                 Thread.sleep(50)
                 handler.post {
                     progressBar.progress = progressStatus
-                    var percentage = ((progressStatus.toDouble()
-                            / filesToDownload) * 100).toInt()
-
                 }
             }
         }.start()
