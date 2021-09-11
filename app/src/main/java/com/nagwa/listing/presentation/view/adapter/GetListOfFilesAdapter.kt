@@ -3,6 +3,7 @@ package com.nagwa.listing.presentation.view.adapter
 import android.os.Handler
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.view.isVisible
 import com.nagwa.listing.R
 import com.nagwa.listing.data.model.GetListOfFilesResponse
@@ -56,7 +57,7 @@ class GetListOfFilesAdapter @Inject constructor() :
         override fun onBind(item: GetListOfFilesResponse) {
             itemView.pdfTitle.text = item.name
             itemView.downloadPdf.setOnClickListener {
-                startDownload(itemView.pdf_progress_bar)
+                startDownload(itemView.pdf_progress_bar, itemView.pdfPercentage)
                 itemView.downloadPdf.isEnabled = false
             }
         }
@@ -69,7 +70,7 @@ class GetListOfFilesAdapter @Inject constructor() :
             var position = 0
             itemView.videoTitle.text = item.name
             itemView.downloadVideo.setOnClickListener {
-                startDownload(itemView.video_progress_bar)
+                startDownload(itemView.video_progress_bar, itemView.videoPercentage)
                 itemView.downloadVideo.isEnabled = false
 
             }
@@ -94,7 +95,7 @@ class GetListOfFilesAdapter @Inject constructor() :
         }
     }
 
-    private fun startDownload(progressBar: ProgressBar) {
+    private fun startDownload(progressBar: ProgressBar, textView: TextView) {
         progressBar.visibility = View.VISIBLE
         var progressStatus = 0
         val handler = Handler()
@@ -107,6 +108,9 @@ class GetListOfFilesAdapter @Inject constructor() :
                 Thread.sleep(50)
                 handler.post {
                     progressBar.progress = progressStatus
+                    val percentage = ((progressStatus.toDouble()
+                            / filesToDownload) * 100).toInt()
+                    textView.text = "Downloaded $percentage%"
                 }
             }
         }.start()

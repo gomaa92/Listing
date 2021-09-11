@@ -44,6 +44,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/downloadVideo"
         app:layout_constraintTop_toTopOf="@id/downloadVideo" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/videoPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/video_progress_bar"
+        app:layout_constraintStart_toStartOf="@id/video_progress_bar"
+        app:layout_constraintTop_toBottomOf="@id/video_progress_bar" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/videoTitle"
