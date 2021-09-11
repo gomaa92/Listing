@@ -66,6 +66,7 @@ class GetListOfFilesAdapter @Inject constructor() :
         BaseRecyclerViewAdapter.BaseRecyclerViewHolder<GetListOfFilesResponse>(itemView) {
 
         override fun onBind(item: GetListOfFilesResponse) {
+            var position = 0
             itemView.videoTitle.text = item.name
             itemView.downloadVideo.setOnClickListener {
                 startDownload(itemView.video_progress_bar)
@@ -74,9 +75,11 @@ class GetListOfFilesAdapter @Inject constructor() :
             }
             itemView.videoView.setOnClickListener {
                 if (itemView.videoView.isPlaying) {
+                    position = itemView.videoView.currentPosition
                     itemView.videoView.pause()
                 } else if (!itemView.videoView.isPlaying && !itemView.playVideo.isVisible) {
-                    itemView.videoView.resume()
+                    itemView.videoView.seekTo(position)
+                    itemView.videoView.start()
                 }
             }
             itemView.playVideo.setOnClickListener {

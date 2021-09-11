@@ -32,7 +32,7 @@ class GetListOfFilesViewModel @Inject constructor(private val useCase: GetListOf
         )
     }
 
-     fun getData() = data
+    fun getData() = data
 
     fun getLoadingSubject(): BehaviorSubject<Boolean> {
         return mLoadingSubject
